@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Vice City Nights — turn any photo and a caption into GTA 6-style multi-panel cover art, offline in your browser, exported as a PNG.">
+<title>Vice City Nights — Cover Studio</title>
+<link rel="stylesheet" href="./style.css">
+<link rel="icon" href="data:,">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">VCN</span>
+    <span class="brand-name">VICE CITY NIGHTS</span>
+    <span class="brand-sub">cover studio</span>
+  </div>
+  <p class="tagline">Your photo. Your caption. One poster.</p>
+</header>
+<main class="studio">
+  <section class="preview-wrap">
+    <div class="stage-frame">
+      <canvas id="stage" width="1080" height="1080" aria-label="Cover preview"></canvas>
+      <p class="stage-hint" id="stageHint">Click a panel to select it, then drag the photo inside it. Scroll the zoom slider to crop tighter.</p>
+    </div>
+    <div class="size-row" role="group" aria-label="Post size">
+      <button type="button" class="size-btn is-active" data-size="1080x1080">Square · 1080×1080</button>
+      <button type="button" class="size-btn" data-size="1080x1350">Portrait · 1080×1350</button>
+      <button type="button" class="size-btn" data-size="1920x1080">Wide · 1920×1080</button>
+    </div>
+  </section>
+  <aside class="controls">
+    <section class="panel-group">
+      <h2>1 · Layout</h2>
+      <div class="btn-row" id="layoutRow">
+        <button type="button" class="choice is-active" data-layout="trio">Comic Trio</button>
+        <button type="button" class="choice" data-layout="quad">Four Corners</button>
+        <button type="button" class="choice" data-layout="bleed">Full Bleed</button>
+      </div>
+      <p class="help">Trio: one hero panel + two stacked. Quad: four equal panels. Bleed: a single photo, edge to edge.</p>
+    </section>
+    <section class="panel-group">
+      <h2>2 · Look</h2>
+      <div class="btn-row" id="lookRow">
+        <button type="button" class="choice is-active" data-look="sunset">Sunset</button>
+        <button type="button" class="choice" data-look="neon">Neon Nights</button>
+        <button type="button" class="choice" data-look="vicepink">Vice Pink</button>
+      </div>
+      <p class="help">Each look regrades the sky, the sun and the caption glow.</p>
+    </section>
+    <section class="panel-group">
+      <h2>3 · Photos</h2>
+      <p class="help" id="panelLabel">Panel 1 of 3 selected.</p>
+      <div class="btn-row">
+        <label class="upload-btn">Add photo
+          <input id="photoFile" type="file" accept="image/*" hidden>
+        </label>
+        <button type="button" class="ghost-btn" id="fillAll">Use in all panels</button>
+        <button type="button" class="ghost-btn" id="clearPanel">Clear panel</button>
+      </div>
+      <div class="btn-row">
+        <button type="button" class="ghost-btn" id="sampleBoulevard">Try sample: boulevard</button>
+        <button type="button" class="ghost-btn" id="samplePier">Try sample: pier</button>
+      </div>
+      <label class="slider-label">Zoom
+        <input id="zoom" type="range" min="100" max="300" value="100">
+        <span id="zoomVal">100%</span>
+      </label>
+      <p class="help">Drag the photo inside the selected panel to move it. Photos stay on your machine — nothing is uploaded.</p>
+    </section>
+    <section class="panel-group">
+      <h2>4 · Caption</h2>
+      <label class="field">Title
+        <input id="title" type="text" maxlength="28" value="VICE CITY NIGHTS" autocomplete="off">
+      </label>
+      <label class="field">Subtitle
+        <input id="subtitle" type="text" maxlength="40" value="one more night on the boulevard" autocomplete="off">
+      </label>
+      <label class="field">Caption size
+        <input id="titleScale" type="range" min="70" max="130" value="100">
+        <span id="titleScaleVal">100%</span>
+      </label>
+    </section>
+    <button type="button" class="export-btn" id="export">Export PNG</button>
+    <p class="status" id="status" role="status">Ready — add a photo to begin.</p>
+    <p class="fineprint">Original art drawn in code. Fonts: Anton &amp; Pacifico (SIL OFL). No Rockstar Games logo, artwork or font.</p>
+  </aside>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
